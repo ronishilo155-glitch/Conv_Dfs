@@ -1,0 +1,14 @@
+# Notice ALL values are in hex bytes
+# Notice int words are provided in little endian (value least significant byte is first)
+
+00 00 00 40  # input_addr = 40000000 
+00 40 00 40  # kernel_addr = 40004000 
+00 80 00 40  # output_addr = 40008000 
+00 04 00 00  # input_num_bytes = 00000400 (1024 decimal)
+04 00 00 00  # kernel_num_bytes = 00000004 (4 decimal)
+00 01 00 00  # output_num_bytes = 00000100 (256 decimal)
+20 00 00 00  # input_height = 00000020 (32 decimal)
+20 00 00 00  # input_width = 00000020 (32 decimal)
+02 00 00 00  # kernel_size = 00000002 (2 decimal)
+02 00 00 00  # stride = 00000002 (2 decimal)
+00 00 00 00  # padding = 00000000 (0 decimal)
