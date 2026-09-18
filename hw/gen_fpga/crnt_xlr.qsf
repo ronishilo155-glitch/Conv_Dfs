@@ -1,0 +1,15 @@
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/my_conv16.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/idle_unit.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/process_unit.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/write_back_unit.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/mac_lane.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/load_tile_unit.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/shmilas/ws/my_k5_proj/hw/xlrs/my_conv16/check_depth_unit.sv
+
+set_global_assignment -name VERILOG_MACRO "CRNT_XLR=my_conv16"

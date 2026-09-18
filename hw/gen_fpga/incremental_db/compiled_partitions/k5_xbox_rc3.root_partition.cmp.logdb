@@ -1,0 +1,6 @@
+v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|process_unit:i_process|mac_lane:mac_inst|lpm_mult:Mult3|mult_dfs:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|process_unit:i_process|mac_lane:mac_inst|lpm_mult:Mult2|mult_dfs:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|process_unit:i_process|mac_lane:mac_inst|lpm_mult:Mult1|mult_dfs:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|process_unit:i_process|mac_lane:mac_inst|lpm_mult:Mult0|mult_dfs:auto_generated|mac_out2,
+PORT_SWAPPING,PORT_SWAPPING_FINISHED,k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|process_unit:i_process|mac_lane:mac_inst|lpm_mult:Mult0|mult_dfs:auto_generated|mac_mult1,

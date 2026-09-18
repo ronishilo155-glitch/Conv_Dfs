@@ -1,0 +1,4 @@
+# Single Kernel Data (2x2, unsigned hex bytes):
+# Kernel from paper: [[1, 0], [0, 1]]
+
+01 01 01 01 

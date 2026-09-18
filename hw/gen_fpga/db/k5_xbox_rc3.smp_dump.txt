@@ -1,0 +1,36 @@
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|state
+Name state.WAIT_WRITE state.WRITE_BACK state.WAIT_PROC state.PROC_START state.WAIT_INIT_LOAD state.INIT_LOAD state.WAIT_IDLE_UNIT state.IDLE state.SYNC_LOAD 
+state.IDLE 0 0 0 0 0 0 0 0 0 
+state.WAIT_IDLE_UNIT 0 0 0 0 0 0 1 1 0 
+state.INIT_LOAD 0 0 0 0 0 1 0 1 0 
+state.WAIT_INIT_LOAD 0 0 0 0 1 0 0 1 0 
+state.PROC_START 0 0 0 1 0 0 0 1 0 
+state.WAIT_PROC 0 0 1 0 0 0 0 1 0 
+state.WRITE_BACK 0 1 0 0 0 0 0 1 0 
+state.WAIT_WRITE 1 0 0 0 0 0 0 1 0 
+state.SYNC_LOAD 0 0 0 0 0 0 0 1 1 
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|my_conv16:my_conv16|load_tile_unit:i_load_tile|state
+Name state.IDLE state.WAIT_DATA state.REQ 
+state.IDLE 0 0 0 
+state.REQ 1 0 1 
+state.WAIT_DATA 1 1 0 
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|k5_sys:k5_sys|k5_sys_access:k5_sys_access|k5_uart_access:k5_uart_access|uart_tx:uart_tx_i|CS
+Name CS.STOP_BIT_LAST CS.STOP_BIT_FIRST CS.PARITY CS.DATA CS.START_BIT CS.IDLE 
+CS.IDLE 0 0 0 0 0 0 
+CS.START_BIT 0 0 0 0 1 1 
+CS.DATA 0 0 0 1 0 1 
+CS.PARITY 0 0 1 0 0 1 
+CS.STOP_BIT_FIRST 0 1 0 0 0 1 
+CS.STOP_BIT_LAST 1 0 0 0 0 1 
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|k5_sys:k5_sys|k5_sys_access:k5_sys_access|k5_uart_access:k5_uart_access|uart_rx:uart_rx_i|CS
+Name CS.STOP_BIT CS.PARITY CS.SAVE_DATA CS.DATA CS.START_BIT CS.IDLE 
+CS.IDLE 0 0 0 0 0 0 
+CS.START_BIT 0 0 0 0 1 1 
+CS.DATA 0 0 0 1 0 1 
+CS.SAVE_DATA 0 0 1 0 0 1 
+CS.PARITY 0 1 0 0 0 1 
+CS.STOP_BIT 1 0 0 0 0 1 
