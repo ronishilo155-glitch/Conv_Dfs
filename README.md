@@ -42,3 +42,38 @@ flowchart TD
     RF3 -->|2x2 Conv Stride 2| ACT
     ACT -->|Streamed Accumulation| FC
     FC --> OUT
+🔑 Key Acceleration PrinciplesNon-Overlapping Stride: The kernel size and stride are identically set to 2, eliminating dependencies between neighboring receptive fields and removing the storage-recalculation dilemma.On-Chip Inter-Layer Streaming: Intermediate activations produced by each stage are consumed immediately by the next layer in local registers without communicating back to external DRAM.🧱 High-Level Hardware ArchitectureThe accelerator processes scalable input images by fetching fixed-size 16x16 pixel tiles sequentially from main memory into on-chip registers.קטע קודflowchart LR
+    subgraph Main_Memory [System Memory]
+        DRAM[(DRAM / Main Memory)]
+    end
+
+    subgraph Accelerator_Core [FPGA Accelerator]
+        EXT[Tile Extraction Interface]
+        
+        subgraph Fused_Pipeline [Fused Computational Engine]
+            direction TB
+            BUF_A[Buffer A: 16x16 Registers]
+            BUF_B[Buffer B: 16x16 Registers]
+            
+            STAGE[Fused Operations:\n1. Parallel 2x2 MAC Units\n2. Fused ReLU Activation\n3. Bit-Shift Normalization]
+            
+            BUF_A -->|Input Data| STAGE
+            STAGE -->|Intermediate Output| BUF_B
+            BUF_B -.->|Logical Swap| BUF_A
+        end
+        
+        WRITER[Output Write-Back Unit]
+    end
+
+    DRAM -->|Read 16x16 Tile| EXT
+    EXT --> BUF_A
+    STAGE --> WRITER
+    WRITER -->|Write 16x16 Output| DRAM
+🧩 Core Architectural Components⚙️ Component🛠️ Hardware Implementation Details📥 Tile Extraction InterfaceManages communication with main DRAM. Extracts 16x16 pixel tiles to guarantee the computational core has immediate access to required data, reducing memory bandwidth.🔄 Double Buffer MechanismEmploys two local 16x16 memory banks. During each stage, one buffer acts as the source while the other stores intermediate results. The system logically swaps buffers after each stage, achieving Zero DRAM access between intermediate stages.⚡ Parallel MAC UnitsExploits data-level parallelism. Once a full convolution window is available in the local registers, pixels are fed into multiple multipliers simultaneously, executing the Multiply-Accumulate (MAC) operation in a single clock cycle.🔗 Fused Pipeline StagesMerges MAC, ReLU activation, and bit-shift normalization into a single continuous hardware flow, rather than sequentially writing back to memory after each operation.📁 Repository StructureThe repository is organized into five main directories, enforcing a strict hardware-software co-design methodology:📂 Directory🎯 Purposesw/Contains the Bare-Metal C application (my_conv.c) that controls the hardware, memory pointers, and Python scripts for generating input matrices and configurations.sim/The cycle-accurate simulation environment. Contains the Python Golden Reference model (conv.new.expected.py), error checking scripts (check_conv_error.py), and the runtime t0 directory.hw/Contains all SystemVerilog (RTL) files for the hardware datapath, parallel MAC units, and FSM control logic.mnist_py/An independent Python validation environment used to evaluate the hardware constraints (stride-2, 2x2 kernels, symmetric padding) against the MNIST dataset.cpp_code/The legacy baseline C++ implementation (pip.cpp), developed during Phase 1 for algorithmic validation prior to the Bare-Metal adaptation.🚀 Execution & Simulation Guide☁️ Option A: BIU K5 Cloud EnvironmentTo run the simulation in the cloud environment, open two separate terminal sessions. In both terminals, initialize the K5 environment (which automatically navigates to the required simulation directory):Bashset_k5_terminal
+Terminal 1 (Hardware Simulator):Bashlaunch_k5_sim my_conv
+Terminal 2 (Bare-Metal Application):(Note: The host C application automatically triggers the Python test vector generation script before execution).Bashlaunch_k5_app my_conv -ccd1 XON -itr 1
+🪟 Option B: Windows FPGA EnvironmentTo deploy and execute the design locally on the physical FPGA board, use the Git Bash (or MINGW64) terminal on Windows.1. Initialize the Environment (Once per session):Navigate to the local K5 installation directory and load the environment:Bashcd /c/k5x_win
+source k5_xbox_fpga_win/setup/build_env.sh
+set_k5_terminal
+2. Program the FPGA & Run:Ensure your generated .sof bitstream file is placed in the $FPGA_PROG_FILES directory. Then, program the board and launch the application:Bashprog_fpga my_conv
+launch_k5_app my_conv
