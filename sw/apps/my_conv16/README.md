@@ -50,8 +50,8 @@ The primary C application acts as the master controller for the 2D Convolution R
 
 The software stack works in tandem with external environments to verify the algorithmic and hardware correctness:
 
-*   **Cycle-Accurate Simulation (`sim`):** For automated error checking (MSE), the Python Golden Reference model, and detailed simulation logs, refer to the [Simulation Environment README](../sim/README.md).
-*   **MNIST Validation (`MNIST_py`):** To evaluate the hardware architecture against real-world datasets, the project utilizes the `MNIST_py` environment. This directory contains the specific validation script (`MNIST_and_our_conv.py`), the image dataset (`MNISTdata.hdf5`), and the C++ pipeline library (`pipeline.dll`). For more details, refer to the [MNIST_py README](../MNIST_py/README.md).
+*   **Cycle-Accurate Simulation (`sim`):** For automated error checking (MSE), the Python Golden Reference model, and detailed simulation logs, refer to the [Simulation README](./sim/README.md).
+*   **MNIST Validation (`MNIST_py`):** To evaluate the hardware architecture against real-world datasets, the project utilizes the `MNIST_py` environment. This directory contains the specific validation script (`MNIST_and_our_conv.py`), the image dataset (`MNISTdata.hdf5`), and the C++ pipeline library (`pipeline.dll`). For more details, refer to the [MNIST README](./MNIST_py/README.md).
 
 ---
 
