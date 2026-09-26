@@ -14,7 +14,7 @@ The `Cpp_code` directory contains the foundational software implementation of ou
 
 We initially developed this code in C++ within a local Windows environment to validate the core mathematical and architectural concepts. Once the algorithmic logic was proven to work, we ported this codebase into a Bare-Metal C driver within the cloud laboratory environment, where we continued all subsequent hardware-software integration.
 
-🔗 **From C++ to Cycle-Accurate Validation:** To see how this initial algorithm evolved into our final simulation and verification framework on the cloud, please refer to the [Simulation Environment README](../sim/README.md).
+🔗 **From C++ to Cycle-Accurate Validation:** To see how this initial algorithm evolved into our final simulation and verification framework on the cloud, please refer to the [Simulation README](./../sim/README.md).
 
 ---
 
@@ -46,4 +46,4 @@ To ensure our custom convolution architecture was viable for machine learning, w
 
 Because our convolution logic was written in C++, we wrapped the core processing functions in an `extern "C"` bridge interface and compiled the code into a dynamic link library (`pipeline.dll`). This allowed the Python-based MNIST script to directly call and execute our custom C++ convolution operations during its forward pass.
 
-🔗 **Accuracy & Model Testing:** For a detailed breakdown of how we evaluated our convolution's accuracy using this compiled library alongside the Python network, please proceed to the [MNIST Validation README](../MNIST_py/README.md).
+🔗 **Accuracy & Model Testing:** For a detailed breakdown of how we evaluated our convolution's accuracy using this compiled library alongside the Python network, please proceed to the [MNIST README](./../MNIST_py/README.md).
