@@ -66,7 +66,6 @@ The hardware design is highly modular. The top-level module instantiates the ind
 | **`load_tile_unit.sv`** | **Input Interface.** Responsible for fetching the input tile from system memory (DRAM) and storing it into the local BRAM/registers. |
 | **`process_unit.sv`** | **Core Execution State.** Manages the double-buffering logic and pipeline. It applies the convolution window across the tile, incorporates ReLU activation, and handles bit-shift scaling. |
 | **`mac_lane.sv`** | **Arithmetic Core (Sub-module of `process_unit`).** Contains the parallel multipliers and adder tree to perform the core Multiply-Accumulate (MAC) operations in a single clock cycle. |
-| **`check_depth_unit.sv`** | **Validation State.** Evaluates if the recursive convolution process has reached the target resolution (16x16 output). If not, it triggers a buffer swap to continue processing. |
 | **`write_back_unit.sv`** | **Output Interface.** Streams the final, processed 16x16 feature map from the local buffers back into the designated system memory (DRAM) addresses. |
 
 ---
