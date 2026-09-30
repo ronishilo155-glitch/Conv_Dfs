@@ -1,11 +1,5 @@
 import xbox_def_pkg::*;
 
-// Top-level accelerator FSM.
-//
-// CYCLE REDUCTION: Removed CHECK_DEPTH and WAIT_CHECK states.
-// Depth check is now inlined in WAIT_PROC: when process_done, inspect
-// depth_steps_left directly and branch to PROC_START or WRITE_BACK.
-// Saves 2 cycles per depth stage x 4 stages x 256 tiles = 2,048 cycles.
 
 module my_conv16 (
   input        clk,
@@ -183,8 +177,7 @@ module my_conv16 (
                   end
               end
 
-              // Inline depth decrement: when looping back to PROC_START,
-              // reduce depth here so process_unit sees depth-1 immediately.
+              
               WAIT_PROC: begin
                   if (process_done && depth_steps_left > 3'd1)
                       depth_steps_left <= depth_steps_left - 3'd1;
@@ -249,8 +242,7 @@ module my_conv16 (
       .final_pixel_out (final_pixel_wire)
   );
 
-  // check_depth_unit removed: depth check is now inlined in WAIT_PROC.
-
+  
   logic [3:0] write_size_tmp;
 
   write_back_unit i_write_back (
